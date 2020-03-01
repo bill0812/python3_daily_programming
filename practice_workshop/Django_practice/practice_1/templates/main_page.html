@@ -1,0 +1,27 @@
+<html lang=zh-TW>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>StayTuned Design</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    {% load staticfiles %}
+	<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/home_page.css" %}">
+	<script src="{% static "js/bootstrap.min.js" %}"></script>
+</head>
+<body>
+    <div class="container container_adjust">
+        <div class="col-xs-12 bg_adjust">
+            <img src="../static/img/classroom.jpg" class="img-responsive home_pic">
+        </div>
+
+        <div class="col-xs-12 adjust_width">
+            <div class="title">
+                學生資料管理系統
+            </div>
+			<label>{{name}}</label>
+        </div>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+0,0,__NOCLASS__
+73,49,small_car
