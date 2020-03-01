@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/cart/cart.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="cart-title">購物車</h2>
+            </div>
+        </div>
+        <form method="GET">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="cart-title">客製化</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>筆數</th>
+                            {% for product_data in product %}
+                                <th>{{product_data}}</th>
+                            {% endfor %}
+                                <th>總價格</th>
+                                <th>狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for customer_count,customer_data in customer.items %}
+                            <tr class="table-border-customer">
+                                <td>{{customer_count}}</td>
+                            {% for status,customer_amount in customer_data.items %}
+                                {% if status != "總價格" %}
+                                    <td>{{customer_amount}}</td>
+                                {% endif %}
+                            {% endfor %}
+                            {% for customer_amount,dollars in customer_data.items %}
+                                {% if customer_amount == "總價格" %}
+                                    <td>{{dollars}}</td>
+                                {% endif %}
+                            {% endfor %}
+                                <td>
+                                    <input type="checkbox" class="customer_length" id={{customer_count}}>
+                                    <label for={{customer_count}}>確認購買</label>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="cart-title">一般產品</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>品項</th>
+                                <th>內容</th>
+                                <th>數量</th>
+                                <th>總額</th>
+                                <th>狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for normal_product_key,normal_product_value in normal_product.items %}
+                            <tr class="table-border-normal">
+                                <td>{{normal_product_key}}</td>
+                            {% for title,amount in normal_product_value.items %}
+                                {% if title == "產品資訊" %}
+                                    <td>
+                                        <table class="cart-table">
+                                            {% for content,count in amount.items %}
+                                                <tr>
+                                                    <td>{{content}}</td>
+                                                    <td>{{count}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </td>
+                                {% else %}
+                                    <td>{{amount}}</td>
+                                {% endif %}
+                            {% endfor %}
+                                <td>
+                                    <input type="checkbox" class="normal_length" id={{normal_product_key}}>
+                                    <label for={{normal_product_key}}>確認購買</label>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-info">確認購買</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("form").submit(function(event) {
+                event.preventDefault();
+                var data = {};
+                data["customer"] = []
+                data["normal"] = []
+                var customer_length = $("input[type=checkbox]:checked.customer_length").length;
+                var normal_length = $("input[type=checkbox]:checked.normal_length").length;
+                for( i = 0 ; i < customer_length ; i++ ){
+                    data["customer"].push($("input[type=checkbox]:checked.customer_length").eq(i).attr("id"));
+                };
+                for( i = 0 ; i < normal_length ; i++ ){
+                    data["normal"].push($("input[type=checkbox]:checked.normal_length").eq(i).attr("id"));
+                };
+                if(data["normal"].length != 0 || data["customer"].length != 0 ){
+                    $.ajax({
+                        url: "/cart_upload/",
+                        type: 'GET',
+                        data : data,
+                        success: function(text) {
+                            if( text == "success" ){
+                                location.href = "/delivery/"
+                            }else{
+                                alert("有問題哦")
+                            }
+                        },
+                        error : function(xhr,errmsg,err) {
+                            console.log(xhr.status + ": " + xhr.responseText);
+                        }
+                    });
+                }else{
+                    alert("沒選哦～～");
+                }
+            })
+        })
+    </script>
+    {% include "footer.html" %}
+</body>

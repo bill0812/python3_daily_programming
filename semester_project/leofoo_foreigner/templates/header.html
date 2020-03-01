@@ -1,0 +1,56 @@
+<!-- Navigation -->
+<nav class="navbar navbar-fixed-top">
+
+    <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="main.html">蔬菜配</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="nav navbar-nav">
+            {% if user == 1  %}
+                <li class="nav-item">
+                    <a class="nav-link" href="../main">回首頁</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../cart">購物車</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../customer_page">客製化</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../reply">回應區</a>
+                </li>
+                <li class="nav-item display-flex">
+                    <span class="span-btn">歡迎 ： </span>
+                    <a class="nav-link" href="../personal">{{name}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../logout">登出</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="../main">回首頁</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../login">購物車</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../login">客製化</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../login">回應區</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../login">{{name}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../login">登入</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

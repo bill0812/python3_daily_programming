@@ -1,0 +1,59 @@
+.customer-title{
+    text-align: center;
+}
+.product-img{
+    padding-top: 80%;
+    width: 80%;
+    margin-left: 10%;
+}
+.product-img img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+input{
+    -webkit-appearance: menulist;
+    width: 80%;
+    margin-left: 10%;
+    height: 30px;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    margin-top: 10px;
+    border: 2px solid #5bc0de;
+    font-size: 15px;
+    text-align: center;
+}
+.send-customer{
+    width: 80%;
+    margin-left: 10%;
+    font-size: 23px;
+    margin-top: 20px;
+    padding: 0;
+}
+.submit-btn{
+    padding: 14px 28px;
+}
+.send-customer a{
+    width: 100%;
+    padding: 14px 28px;
+    display: block;
+}
+.send-customer a:hover{
+    text-decoration: none;
+}
+.dollar h2{
+    margin-top: 10px;
+    font-size: 20px;
+    color: black;
+    text-align: right;
+    height: 30px;
+    line-height: 35px;
+}
+.final_show h2{
+    margin-top: 50px;
+    font-size: 50px;
+    text-align: center;
+}

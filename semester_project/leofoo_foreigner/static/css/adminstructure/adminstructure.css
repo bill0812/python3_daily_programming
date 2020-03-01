@@ -1,0 +1,110 @@
+.container{
+    width: 95%;
+}
+.show-inventory{
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+.show-inventory th,.show-inventory td{
+    font-size: 15px;
+    text-align: center;
+    padding: 20px;
+}
+.structure-title{
+    text-align: center;
+}
+.img-area{
+    padding-top: 80%;
+    width: 100%;
+}
+.product-img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.collapse,.card-title,.collapsing{
+    text-align: center;
+}
+.collapse h4,.collapsing h4{
+    font-size: 30px;
+}
+.collapse small,.collapsing small{
+    font-size: 20px;
+}
+.input-count{
+    margin-top: 15px;
+    text-align-last: center;
+    width: 100%;
+    height: 30px;
+    font-size: 25px;
+    display: block;
+    -webkit-appearance: menulist-button;
+}
+button.back{
+    width: 100%;
+    margin-top: 20px;
+}
+.scroll{
+    height: 500px;
+    max-height: 500px;
+    overflow: scroll;
+}
+.show-structure{
+    position: absolute;
+    background-color: white;
+    right: 30px;
+    border-radius: 10px;
+    display: none;
+    width: calc(50% - 30px );
+    text-align: center;
+    padding: 15px;
+    padding-bottom: 25px;
+}
+.confirm,.send{
+    width: 100%;
+    margin-top: 20px;
+}
+.show-veg{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+input{
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+}
+.quantity-row{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.quantity-row h3{
+    margin-top: 0;
+}
+span{
+    font-size: 15px;
+}
+.count{
+    text-align: center;
+}
+.object{
+    background-color: #ffffff7a;
+    border: 1px solid #0000005c;
+    border-radius: 10px;
+    margin: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+input.add{
+    width: 80%;
+}
+button.add-btn{
+    width: 80%;
+    height: 30px;
+    font-size: 10px;
+    line-height: 1px;
+    margin-top: 5px;
+    padding: 5px;
+}

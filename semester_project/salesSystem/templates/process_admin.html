@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/adminprocess/adminprocess.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 structure-title">
+                <h1>主排程</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>產品訂單</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table>
+                    <thead>
+                        <th>名稱</th>
+                        <th>數量</th>
+                        <th>狀態</th>
+                        <th>動作</th>
+                    </thead>
+                    <tbody>
+                        {% for key,value in pro_data.items %}
+                            <tr>
+                            {% for value_key,value_value in value.items %}
+                                {% if value_key == "名稱" %}
+                                    <td>{{value_value}}</td>
+                                {% endif %}
+                                {% if value_key == "數量" %}
+                                    <td>{{value_value}}</td>
+                                {% endif %}
+                            {% endfor %}
+                            {% for value_key,value_value in value.items %}
+                                {% for name , status in pro_status.items %}
+                                    {% if value_value == name %}
+                                        <td>{{status}}</td>
+                                        {% if status == "商品尚未好" %}
+                                            <td>
+                                                <button class="btn btn-info product" disabled>未能取貨</button>
+                                            </td>
+                                        {% else %}
+                                            <td>
+                                                <button class="btn btn-info product" id="{{key}}">取貨</button>
+                                            </td>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>蔬菜訂貨</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table>
+                    <thead>
+                        <th>名稱</th>
+                        <th>數量</th>
+                        <th>狀態</th>
+                        <th>動作</th>
+                    </thead>
+                    <tbody>
+                        {% for key,value in veg_data.items %}
+                            <tr>
+                            {% for value_key,value_value in value.items %}
+                                {% if value_key == "名稱" %}
+                                    <td>{{value_value}}</td>
+                                {% endif %}
+                                {% if value_key == "數量" %}
+                                    <td>{{value_value}}</td>
+                                {% endif %}
+                            {% endfor %}
+                            {% for value_key,value_value in value.items %}
+                                {% for name , status in veg_status.items %}
+                                    {% if value_value == name %}
+                                        <td>{{status}}</td>
+                                        {% if status == "商品尚未好" %}
+                                            <td>
+                                                <button class="btn btn-info veg" disabled>未能取貨</button>
+                                            </td>
+                                        {% else %}
+                                            <td>
+                                                <button class="btn btn-info veg" id="{{key}}">取貨</button>
+                                            </td>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-info back">返回</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("body").on("click",".back",function(){
+                location.href = "/admin_page/"
+            });
+            $("button.product").click(function(){
+                name = $(this).attr("id");
+                data = {
+                    "order" : name
+                }
+                $.ajax({
+                    url: "/get_product_order/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text) {
+                        if(text == "success"){
+                            alert("成功送出叫貨！！");
+                            location.reload();
+                        }else{
+                            alert("出錯了哦！！");
+                            location.reload();
+                        }
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+            $("button.veg").click(function(){
+                name = $(this).attr("id");
+                data = {
+                    "order" : name
+                }
+                $.ajax({
+                    url: "/get_veg_order/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text) {
+                        if(text == "success"){
+                            alert("成功送出叫貨！！");
+                            location.reload();
+                        }else{
+                            alert("出錯了哦！！");
+                            location.reload();
+                        }
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+        })
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

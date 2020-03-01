@@ -1,0 +1,5 @@
+textbook_examples/本書範例/ch17/brickgame/dist/brickgame.exe filter=lfs diff=lfs merge=lfs -text
+textbook_examples/本書範例/ch17/brickgame/build/brickgame/out00-PKG-brickgame.pkg filter=lfs diff=lfs merge=lfs -text
+textbook_examples/本書範例/ch17/mp3Play/dist/mp3Play.exe filter=lfs diff=lfs merge=lfs -text
+textbook_examples/本書範例/ch17/mp3Play/build/mp3Play/out00-PKG-mp3play.pkg filter=lfs diff=lfs merge=lfs -text
+datasets/** filter=lfs diff=lfs merge=lfs -text

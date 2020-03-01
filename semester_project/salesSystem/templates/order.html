@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/order/order.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>訂單在這兒：{{number}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <h3>訂單成立時間：</h3>
+            </div>
+            <div class="col-xs-8">
+                <h3>{{time}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <h3>訂單成立人：</h3>
+            </div>
+            <div class="col-xs-8">
+                <h3>{{name}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <h3>訂單人電話：</h3>
+            </div>
+            <div class="col-xs-8">
+                <h3>{{phone}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <h3>訂單人取貨地址：</h3>
+            </div>
+            <div class="col-xs-8">
+                <h3>{{address}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="cart-title">客製化</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>筆數</th>
+                        {% for product_data in product %}
+                            <th>{{product_data}}</th>
+                        {% endfor %}
+                            <th>總價格</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for customer_count,customer_data in customer.items %}
+                        <tr class="table-border-customer">
+                            <td>{{customer_count}}</td>
+                        {% for status,customer_amount in customer_data.items %}
+                            {% if status != "總價格" %}
+                                <td>{{customer_amount}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        {% for customer_amount,dollars in customer_data.items %}
+                            {% if customer_amount == "總價格" %}
+                                <td>{{dollars}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="cart-title">一般產品</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>品項</th>
+                            <th>數量</th>
+                            <th>內容</th>
+                            <th>總額</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for normal_product_key,normal_product_value in normal.items %}
+                        <tr class="table-border-normal">
+                            <td>{{normal_product_key}}</td>
+                        {% for title,amount in normal_product_value.items %}
+                            {% if title == "產品資訊" %}
+                                <td>
+                                    <table class="cart-table">
+                                        {% for content,count in amount.items %}
+                                            <tr>
+                                                <td>{{content}}</td>
+                                                <td>{{count}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </td>
+                            {% else %}
+                                <td>{{amount}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-info">回首頁</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("button[type=button]").click(function(){
+                location.href = "/main/"
+            });
+        })
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

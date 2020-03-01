@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/customer/customer.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="customer-title">客製化</h2>
+            </div>
+        </div>
+        <form method="GET">
+            <div class="row">
+            {% for product_key,product_name in product.items %}
+                <div class="col-xs-4">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="customer-title">{{product_key}}<h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 product-img">
+                            <img src="../static/img/customer/{{forloop.counter}}.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-12 dollar">
+                                    <h2 class="product_price" n="{{forloop.counter}}">{{product_name.單筆售價}}</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 dollar">
+                                    <h2>元/每單位{{product_name.單筆售價}}元</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="number" name="{{product_key}}" min="0" value="0" id="{{forloop.counter}}" price="{{product_name.單筆售價}}">
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-xs-6 dollar final_show">
+                    <h2>目前總金額</h2>
+                </div>
+                <div class="col-xs-6 dollar final_show">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h2 class="final_price">0</h2>
+                        </div>
+                        <div class="col-xs-6">
+                            <h2>元</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {% if user == 1 %}
+                        <button type="submit" class="btn btn-info send-customer submit-btn">提交</button>
+                    {% else %}
+                        <button class="btn btn-info send-customer"><a href="../login">提交</a></button>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var input_count = $("input[type=number]").length;
+            var data = {};
+            var price = 0
+            console.log(data);
+            $("form").submit(function(event) {
+                event.preventDefault();
+                for( i = 1 ; i <= input_count ; i++ ){
+                    var name = $("input[type=number]#"+i).attr("name");
+                    data[name] = $("input[type=number]#"+i).val();
+                }
+                data["總價格"] = parseInt($(".final_price").text());
+                console.log(data);
+                $.ajax({
+                    url: "/customer_enter/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text) {
+                        if(text == "success" ){
+                            alert("成功提交");
+                            location.href = "/main/" ;
+                        }else{
+                            alert("出了一些問題");
+                            location.reload();
+                        }
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            })
+            $("input[type=number]").on("change",function(event) {
+                price = 0
+                name = $(this).attr("id");
+                event.preventDefault();
+                $("h2.product_price[n="+name+"]").text(parseInt($(this).val()) * parseInt($(this).attr("price")));
+                $("input[type=number]").each(function(){
+                    price = price + parseInt($(this).val()) * parseInt($(this).attr("price"))
+                });
+                $(".final_price").text(price)
+            });
+        })
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

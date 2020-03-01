@@ -1,0 +1,29 @@
+.cart-title{
+    color: #003377;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cart-table{
+    color: #003377;
+    border-radius: 10px;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+.cart-table thead tr th,.cart-table tbody tr td{
+    height: 50px;
+    font-size: 21px;
+    text-align: center;
+}
+.table-border-customer,.table-border-normal{
+    border-bottom: 2px solid #003377;
+}
+.table-border-customer:nth-child(even),.table-border-normal:nth-child(even),.table-border-customer:last-child,.table-border-normal:last-child{
+    border-bottom: none;
+}
+button{
+    width: 100%;
+    height: 40px;
+    font-size: 30px;
+    margin-top: 30px;
+}

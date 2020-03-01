@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/register/register.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+    <!-- Page Content -->
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-xs-offset-2 col-xs-8 input-form">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="title">註冊頁面</h2>
+                        </div>
+                    </div>
+                    <div class="row display-flex">
+                        <div class="col-xs-4">
+                            <h3 class="title">姓名：</h3>
+                        </div>
+                        <div class="col-xs-8 input-area">
+                            <input type="text" name="name" size="10" required>
+                        </div>
+                    </div>
+                    <div class="row display-flex">
+                        <div class="col-xs-4">
+                            <h3 class="title">信箱：</h3>
+                        </div>
+                        <div class="col-xs-8 input-area">
+                            <input type="text" name="email" id="email-input" required>
+                        </div>
+                    </div>
+                    <div class="row display-flex">
+                        <div class="col-xs-4">
+                            <h3 class="title">密碼：</h3>
+                        </div>
+                        <div class="col-xs-8 input-area">
+                            <input type="password" name="password" required>
+                        </div>
+                    </div>
+                    <div class="row display-flex">
+                        <div class="col-xs-4 check_password">
+                            <h3 class="title">密碼確認：</h3>
+                        </div>
+                        <div class="col-xs-8 input-area">
+                            <input class="password-confirm" type="password" name="password-confirm" required>
+                        </div>
+                    </div>
+                    <div class="row display-flex">
+                        <div class="col-xs-4">
+                            <h3 class="title">性別：</h3>
+                        </div>
+                        <div class="col-xs-8 input-area">
+                            <input class="sex-input" type="radio" name="sex" id="male" value="male" checked required>
+                            <label class="male" for="male">男性</label>
+                            <input class="sex-input" type="radio" name="sex" id="female" value="female" required>
+                            <label for="female">女性</label>
+                        </div>
+                    </div>
+                    <div class="row display-flex">
+                        <div class="col-xs-4 check_password">
+                            <h3 class="title">電話：</h3>
+                        </div>
+                        <div class="col-xs-8 input-area">
+                            <input type="text" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="row display-flex">
+                        <div class="col-xs-4 check_password">
+                            <div class="div-table">
+                                <div>
+                                    <h3 class="title">常用取貨地址：</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-8 input-area">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <select class="county-address">
+                                                <option value="">-- 縣市 --</option>
+                                            {% for county in address %}
+                                                <option value="{{county}}">{{county}}</option>
+                                            {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="district-address">
+                                                <option value="">-- 區域 --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <input type="text" name="address">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row display-flex register-btn">
+                        <div class="col-xs-12">
+                            <button type="reset" class="btn btn-info">重新輸入</button>
+                            <button type="submit" class="btn btn-info">註冊</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p id="show-account-check"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".password-confirm").on("change",function(event) {
+                var password = $('input[name=password]').val();
+                var password_confirm = $('input[name=password-confirm]').val();
+                if(password != password_confirm){
+                    $(".check_password h3").css("color","red");
+                    $(".password-confirm").css("color","red");
+                    $(".password-confirm").css("border-color","red");
+                }else{
+                    $(".check_password h3").css("color","#003377");
+                    $(".password-confirm").css("color","black");
+                    $(".password-confirm").css("border-color","initial");
+                }
+            })
+            $("form").submit(function(event) {
+                event.preventDefault();
+                var data = {
+                    name : $('input[name=name]').val(),
+                    email : $('input[name=email]').val(),
+                    password : $('input[name=password]').val(),
+                    sex : $('input[name=sex]:checked').val(),
+                    phone : $('input[name=phone]').val(),
+                    address : $("select.county-address").val() + $("select.district-address").val() + $('input[name=address]').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                };
+                $.ajax({
+                    url: "/register_member/",
+                    type: 'POST',
+                    data : data,
+                    success: function(text) {
+                        console.log(data.account);
+                        if(text == "success"){
+                            location.href = "/main/" ;
+                        }else{
+                            alert("已有使用者或是輸入錯誤！！")
+                            location.reload();
+                        }
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            })
+            $("#email-input").on("change",function(event) {
+                event.preventDefault();
+                var data = {
+                    account : $('input[name=email]').val()
+                };
+                $.ajax({
+                    url: "/vertify_account/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text,) {
+                        if(text == "success"){
+                            $("#show-account-check").text("不可使用此帳號，已有使用者");
+                            $("#show-account-check").css("color","red");
+                        }else{
+                            $("#show-account-check").text("此帳號可使用");
+                            $("#show-account-check").css("color","green");
+                        }
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            })
+            $(".county-address").on("change",function(event) {
+                event.preventDefault();
+                var data = {
+                    county : $('select.county-address').val()
+                };
+                $.ajax({
+                    url: "/register_address/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text) {
+                        $(".district-address").children("option").remove();
+                        for(i = 0 ; i < text.length ; i++ ){
+                            $(".district-address").append($("<option></option>").attr("value", text[i]).text(text[i]));
+                        };
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            })
+        })
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

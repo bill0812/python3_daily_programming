@@ -1,0 +1,23 @@
+table{
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 25px;
+}
+th,td{
+    padding: 10px;
+    text-align: center;
+}
+button.back{
+    width: 100%;
+    margin-top: 100px;
+}
+h2{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+h1{
+    text-align: center;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/login/login.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+    <!-- Page Content -->
+    <form method="post">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 login-panel">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="login-header">
+                                <h2>登入頁面</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row diplay-flex">
+                        <div class="col-xs-3">
+                            <h4>E-mail</h4>
+                        </div>
+                        <div class="col-xs-9">
+                            <input type="text" placeholder="Enter E-mail" name="account" id="login-input" required>
+                        </div>
+                    </div>
+                    <div class="row diplay-flex">
+                        <div class="col-xs-3">
+                            <h4>密碼</h4>
+                        </div>
+                        <div class="col-xs-9">
+                            <input type="password" placeholder="Enter Password" name="password" required>
+                        </div>
+                    </div>
+                    <div class="row login-btn">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-info login-btn-first sign-up"><a href="/register/">註冊</a></button>
+                            <button type="submit" class="btn btn-info">登入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p id="show-account-check"></p>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("form").submit(function(event) {
+                event.preventDefault();
+                var data = {
+                    account : $('input[name=account]').val(),
+                    password : $('input[name=password]').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                };
+                if($('input[name=account]').val() == "0000" && $('input[name=password]').val()== "0000"){
+                    alert("歡迎管理者！！");
+                    location.href = "/admin_page/";
+                }else{
+                    $.ajax({
+                        url: "/vertify/",
+                        type: 'POST',
+                        data : data,
+                        success: function(text) {
+                            console.log(data.account);
+                            if(text == "success"){
+                                location.href = "/main/" ;
+                            }else if(text == "no_member"){
+                                alert("There's no this member")
+                            }else if(text == "wrong"){
+                                alert("Wrong Password !!")
+                            }else{
+                                location.reload();
+                            }
+                        },
+                        error : function(xhr,errmsg,err) {
+                            console.log(xhr.status + ": " + xhr.responseText);
+                        }
+                    });
+                }
+            })
+            $("#login-input").on("change",function(event) {
+                event.preventDefault();
+                var data = {
+                    account : $('input[name=account]').val()
+                };
+                $.ajax({
+                    url: "/vertify_account/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text,) {
+                        if(text == "success"){
+                            $("#show-account-check").text("帳號存在");
+                            $("#show-account-check").css("color","green");
+                        }else{
+                            $("#show-account-check").text("帳號不存在");
+                            $("#show-account-check").css("color","red");
+                        }
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            })
+            $("body").on("click", ".sign-up", function(e){
+                e.preventDefault();
+                location.href = "/register/";
+            });
+        })
+    </script>
+    {% include "footer.html" %}
+  </body>

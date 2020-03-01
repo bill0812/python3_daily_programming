@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/adminstructure/adminstructure.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 structure-title">
+                <h2>物料清單</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 structure-title">
+                <h2>原物料庫存</h2>
+            </div>
+            <div class="col-xs-6 structure-title">
+                <h2>產品資訊</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 scroll">
+                <table class="cart-table show-inventory">
+                    <thead>
+                        <tr>
+                            <th width="20%">種類</th>
+                            <th width="10%">數量</th>
+                            <th width="10%">輸貨時間</th>
+                            <th width="10%">本週平均需求</th>
+                            <th width="10%">狀態</th>
+                            <th width="10%">當今損失成本</th>
+                            <th width="30%">動作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for product_name,product_data in product.items %}
+                        <tr class="table-border-customer">
+                            <td class="kind" n="{{product_name}}">{{product_name}}</td>
+                        {% for key,status in product_data.items %}
+                            {% if key == "數量" %}
+                                <td class="amount real-count">{{status}}</td>
+                            {% endif %}
+                            {% if key == "輸貨時間" %}
+                                <td class="amount" n="{{product_name}}">{{status}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        {% for key,status in median.items %}
+                            {% if key == product_name %}
+                                <td class="amount">{{status}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        {% for key,status_value in status.items %}
+                            {% if key == product_name %}
+                                <td class="amount">{{status_value}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        {% for key,status in left.items %}
+                            {% if key == product_name %}
+                                <td class="amount">{{status}}</td>
+                            {% endif %}
+                        {% endfor %}
+                            <td>
+                                <input class="add" type="quantity" min="0" name="{{product_name}}">
+                                <button class="btn btn-info add-btn" id="{{product_name}}">加買訂購</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-6 scroll">
+                <div class="row">
+                {% for product_name, product_info in product_data.items %}
+                    <div class="col-xs-6 object">
+                        <div class="row">
+                                <div class="col-xs-12">
+                                    <h4 class="card-title">{{product_name}}</h4>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-xs-offset-1 col-xs-10 product-img">
+                                <div class="img-area">
+                                    <img src="../static/img/product/box{{forloop.counter}}.jpg" id="{{product_name}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2 class="count">目前庫存</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4 class="count">{{product_info.目前存貨}}箱</h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:2 %}
+                        {% if forloop.last %}
+                        {% else %}
+                    </div>
+                    <div class="row">
+                        {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-xs-6 scroll show-structure">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="product-title"></h2>
+                    </div>
+                </div>
+                <div class="row quantity-row">
+                    <div class="col-xs-3">
+                        <h3>數量</h3>
+                    </div>
+                    <div class="col-xs-9">
+                        <input class="quantity" placeholder="數量..." type="text" name="quantity" min="1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button class="btn btn-info confirm">取消</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn btn-info send">確定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-info back">返回</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var day_all = 0;
+            var box_all = 0;
+            var product_list = [];
+            var current_count = [];
+            var this_amount = [];
+            $(".table-border-customer").each(function () {
+                product_list.push($(this).children(".kind").text());
+            });
+            $(".table-border-customer").each(function(){
+                current_count.push(parseInt($(this).children(".real-count").text()));
+            });
+            $("body").on("click", ".back", function(e){
+                e.preventDefault();
+                location.href = "/admin_page/";
+            });
+            $("img").click(function(){
+                this_amount = [];
+                var id = $(this).attr("id");
+                var data = {
+                    "id" : id
+                }
+                $.ajax({
+                    url: "/product_structure/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text) {
+                        day_all = text["成貨時間"];
+                        box_all = text["目前存貨"];
+                        $(".product-title").text(id);
+                        $(".product-title").text(id);
+                        $(".show-structure").show(1000);
+                        var area = ""
+                        console.log();
+                        for(i = 0 ; i < Object.keys(text["種類"]).length ; i++ ){
+                            area = area + "<div class='row show-veg'>" +
+                                "<div class='col-xs-3'>" +
+                                    "<h3 class='product-detail'>"+Object.keys(text["種類"])[i]+"</h3>" +
+                                "</div>" +
+                                "<div class='col-xs-9'>" +
+                                    "<h3 class='product-quantity'>"+Object.values(text["種類"])[i].slice(0, Object.values(text["種類"])[i].length-1)+"單位</h3>" +
+                                    "<span>每箱"+Object.values(text["種類"])[i].slice(0, Object.values(text["種類"])[i].length-1)+"單位</span>" +
+                                "</div>" +
+                            "</div>"
+                        };
+                        area = area + "<div class='row show-veg'>" +
+                            "<div class='col-xs-3'>" +
+                                "<h3 class='inbound-title'>未來存貨</h3>" +
+                            "</div>" +
+                            "<div class='col-xs-9'>" +
+                                "<h3 class='inbound-time'>"+text["目前存貨"]+"箱</h3>" +
+                            "</div>" +
+                        "</div>" ;
+                        area = area + "<div class='row show-veg'>" +
+                            "<div class='col-xs-3'>" +
+                                "<h3 class='day-title'>成貨時間</h3>" +
+                            "</div>" +
+                            "<div class='col-xs-9'>" +
+                                "<h3 class='day-time'>"+text["成貨時間"]+"天</h3>" +
+                            "</div>" +
+                        "</div>" ;
+                        $(".show-veg").remove();
+                        $("input").val("");
+                        $(area).insertAfter($(".quantity-row"));
+                        $(".product-quantity").each(function(){
+                            this_amount.push(parseInt($(this).text().slice(0, $(this).text().length-2)));
+                        });
+                        console.log(this_amount);
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+            $(".quantity-row input").change(function () {
+                var number = $(".quantity-row input").val();
+                var length = $(".product-quantity").length;
+                var day = parseFloat($(".day-time").text().slice(0, $(this).text().length-1));
+                var box = parseInt($(".inbound-time").text().slice(0, $(this).text().length-1));
+                console.log(number);
+                if(number == 0 || number == " "){
+                    $(".day-time").text(day_all+"天");
+                    $(".inbound-time").text(box_all+"箱");
+                    console.log("hihi");
+                }else{
+                    $(".day-time").text(Math.round(parseFloat(number) * parseFloat(day) * 100) / 100+"天");
+                    $(".inbound-time").text(box+parseInt(number)+"箱");
+                }
+                var j = 0;
+                $(".product-quantity").each(function(){
+                    if(number == 0){
+                        $(this).text(this_amount[j]+"單位");
+                        $(".product-detail").each(function(){
+                            var this_name = $(this).text();
+                            for(i = 0 ; i < product_list.length ; i++ ){
+                                if(this_name == product_list[i] ){
+                                    var current_amount = current_count[i];
+                                    $(".table-border-customer td.real-count")[i].innerHTML = current_amount;
+                                    break;
+                                }
+                            }
+                        });
+                    }else{
+                        console.log(j);
+                        console.log(this_amount[j]);
+                        $(this).text(this_amount[j]*number+"單位");
+                        $(".product-detail").each(function(){
+                            var this_name = $(this).text();
+                            for(i = 0 ; i < product_list.length ; i++ ){
+                                if(this_name == product_list[i] ){
+                                    var current_amount = current_count[i]
+                                    var amount_string = String($(this).parent().next().children("h3").text());
+                                    var minus_qunatity = parseInt(amount_string.slice(0, amount_string.length-2));
+                                    //console.log($(this).parent().next().children("h3").text());
+                                    $(".table-border-customer td.real-count")[i].innerHTML = current_amount-minus_qunatity;
+                                    break;
+                                }
+                            }
+                        });
+                    }
+                    j = j + 1;
+                });
+            });
+            $(".send").click(function(){
+                var title = $(".product-title").text();
+                var quantity = $("input[type=text].quantity").val();
+                var time = $(".day-time").text();
+                var data = {
+                    "title" : title,
+                    "quantity" : quantity,
+                    "time" : time
+                }
+                $.ajax({
+                    url: "/compose_product/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text) {
+                        if(text == "success"){
+                            alert("成功送出叫貨！！");
+                            location.reload();
+                        }else{
+                            alert("出錯了哦！！");
+                            location.reload();
+                        }
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+            $(".confirm").click(function(){
+                $(".show-structure").hide(1000);
+            });
+            $(".add-btn").click(function(){
+                name = $(this).attr("id");
+                data = {
+                    "quantity" : $("input[name="+name+"]").val(),
+                    "day" : $("td.amount[n="+name+"]").text(),
+                    "name" : $("td.kind[n="+name+"]").text()
+                }
+                console.log(data);
+                $.ajax({
+                    url: "/sned_inventory/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text) {
+                        if(text == "success"){
+                            alert("成功送出蔬菜訂貨通知");
+                            location.reload();
+                        }else{
+                            alert("未送出，出了些問題");
+                            location.reload();
+                        }
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+        })
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

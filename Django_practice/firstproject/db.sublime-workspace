@@ -1,0 +1,599 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"ma",
+				"margin_pic"
+			],
+			[
+				"pa",
+				"padding-top"
+			],
+			[
+				"he",
+				"height_thumbnail"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"pad",
+				"padding-bottom"
+			],
+			[
+				"re",
+				"relative"
+			],
+			[
+				"col-xs",
+				"col-xs-12"
+			],
+			[
+				"bor",
+				"border"
+			],
+			[
+				"dis",
+				"disabled"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"le",
+				"length_of_newtr"
+			],
+			[
+				"get",
+				"getElementsByClassName"
+			],
+			[
+				"ta",
+				"table-row"
+			],
+			[
+				"new",
+				"new_tw"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"n",
+				"none"
+			],
+			[
+				"co",
+				"count_slidedown"
+			],
+			[
+				"fil",
+				"fileVal"
+			],
+			[
+				"fi",
+				"fileVal"
+			],
+			[
+				"col",
+				"col-sm-2"
+			],
+			[
+				"te",
+				"textarea\tTag"
+			],
+			[
+				"ov",
+				"overflow"
+			],
+			[
+				"mat",
+				"margin-top"
+			],
+			[
+				"a",
+				"addClass"
+			],
+			[
+				"E",
+				"9E9E9E"
+			],
+			[
+				"L",
+				"log"
+			],
+			[
+				"op",
+				"opfix"
+			],
+			[
+				"ti",
+				"titleImage"
+			],
+			[
+				"o",
+				"opfix"
+			],
+			[
+				"in",
+				"innerWidth"
+			],
+			[
+				"inner",
+				"innerWidth"
+			],
+			[
+				"ps",
+				"position"
+			],
+			[
+				"tab",
+				"table-cell"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"bol",
+				"bolder"
+			],
+			[
+				"t",
+				"top"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"b",
+				"rgba()"
+			],
+			[
+				"inl",
+				"inline"
+			],
+			[
+				"p",
+				"padding-left"
+			],
+			[
+				"mari",
+				"margin"
+			],
+			[
+				"e",
+				"EA7484"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"tac",
+				"table-cell"
+			],
+			[
+				"m",
+				"margin-bottom"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"borrr",
+				"border-right"
+			],
+			[
+				"padt",
+				"padding-bottom"
+			],
+			[
+				"col-sm",
+				"col-sm-6"
+			],
+			[
+				"fos",
+				"font-size"
+			],
+			[
+				"out",
+				"outline"
+			],
+			[
+				"fons",
+				"font-size"
+			],
+			[
+				"col-",
+				"col-xs-12"
+			],
+			[
+				"margin",
+				"margin"
+			],
+			[
+				"des",
+				"Designer"
+			],
+			[
+				"bore",
+				"border"
+			],
+			[
+				"ou",
+				"outline"
+			],
+			[
+				"borr",
+				"border-radius"
+			],
+			[
+				"bo",
+				"bolder"
+			],
+			[
+				"MA",
+				"margin-left"
+			],
+			[
+				"fou",
+				"founder_pic"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"wi",
+				"table_width"
+			],
+			[
+				"th",
+				"thead\tTag"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"h",
+				"h5\tTag"
+			],
+			[
+				"deta",
+				"detail_fourth_area"
+			],
+			[
+				"or",
+				"order_now"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"bro",
+				"border-radius"
+			],
+			[
+				"marG",
+				"margin-bottom"
+			],
+			[
+				"r",
+				"rgba()"
+			],
+			[
+				"se",
+				"select_size_title"
+			],
+			[
+				"de",
+				"detail_first_area"
+			],
+			[
+				"over",
+				"overflow-x"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"tim",
+				"timer"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"lis",
+				"list-style-type"
+			],
+			[
+				"mo",
+				"movie"
+			],
+			[
+				"cl",
+				"click"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "IN",
+		"selected_items":
+		[
+			[
+				"IN",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"encod",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"Snippet: ",
+				"Snippet: main()"
+			],
+			[
+				"sn",
+				"Set Syntax: C++"
+			],
+			[
+				"",
+				"Set Syntax: C#"
+			]
+		],
+		"width": 444.0
+	},
+	"console":
+	{
+		"height": 178.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/wangboren/staytuned_frontend/css/manufacturer_matching/manufacturer_matching.css",
+		"/Users/wangboren/staytuned_frontend/js/manufacturer_matching/manufacturer_matching.js",
+		"/Users/wangboren/staytuned_frontend/manufacturer_matching.html",
+		"/Users/wangboren/Desktop/:: 20171010234955",
+		"/Users/wangboren/Library/Application Support/Sublime Text 3/Packages/User/ConvertToUTF8.sublime-settings",
+		"/Users/wangboren/Library/Application Support/Sublime Text 3/Packages/ConvertToUTF8/ConvertToUTF8.sublime-settings",
+		"/Users/wangboren/staytuned_frontend/css/presale_product_detail-01/presale_product_detail-01.css",
+		"/Users/wangboren/staytuned_frontend/js/presale_product_detail-01/presale_product_detail-01.js",
+		"/Users/wangboren/staytuned_frontend/presale_product_detail-01.html",
+		"/Users/wangboren/staytuned_frontend/js/Career/Career.js",
+		"/Users/wangboren/staytuned_frontend/css/Career/Career.css",
+		"/Users/wangboren/staytuned_frontend/Career.html",
+		"/Users/wangboren/staytuned_frontend/css/resume_photo/resume_photo.css",
+		"/Users/wangboren/staytuned_frontend/js/resume_photo/resume_photo.js",
+		"/Users/wangboren/staytuned_frontend/resume_photo.html",
+		"/Users/wangboren/staytuned_frontend/js/add_product_1/add_product_1.js",
+		"/Users/wangboren/staytuned_frontend/js/add_product_2/add_product_2.js",
+		"/Users/wangboren/staytuned_frontend/css/add_product_1/add_product_1.css",
+		"/Users/wangboren/staytuned_frontend/add_product.html",
+		"/Users/wangboren/staytuned_frontend/add_product_2.html",
+		"/Users/wangboren/staytuned_frontend/css/add_product_2/add_product_2.css",
+		"/Users/wangboren/staytuned_frontend/css/designer_payment/designer_payment.css",
+		"/Users/wangboren/staytuned_frontend/designer_payment.html",
+		"/Users/wangboren/staytuned_frontend/product_detail.html",
+		"/Users/wangboren/staytuned_frontend/css/product_detail/style.css",
+		"/Users/wangboren/staytuned_frontend/js/product_detail/product.js",
+		"/Users/wangboren/staytuned_frontend/css/designer_matching/designer_matching.css",
+		"/Users/wangboren/staytuned_frontend/js/manufacturer_resume/manufacturer_resume.js",
+		"/Users/wangboren/staytuned_frontend/css/manufacturer_resume/manufacturer_resume.css",
+		"/Users/wangboren/staytuned_frontend/manufacturer_resume.html",
+		"/Users/wangboren/staytuned_frontend/designer_matching.html",
+		"/Users/wangboren/staytuned_frontend/css/add_resume_category/add_resume_category.css",
+		"/Users/wangboren/staytuned_frontend/js/add_resume_category/add_resume_category.js",
+		"/Users/wangboren/staytuned_frontend/add_resume_category.html",
+		"/Users/wangboren/staytuned_frontend/js/manufacturer_changeplan/manufacturer_changeplan.js",
+		"/Users/wangboren/staytuned_frontend/manufacturer_changeplan.html",
+		"/Users/wangboren/staytuned_frontend/css/manufacturer_changeplan/manufacturer_changeplan.css",
+		"/Users/wangboren/staytuned_frontend/resume_list.html",
+		"/Users/wangboren/staytuned_frontend/css/manufacturer_changeplan/manufacturer_matching.css",
+		"/Users/wangboren/staytuned_frontend/css/manufacturer_matching/manufacturer_changeplan/manufacturer_matching.css",
+		"/Users/wangboren/staytuned_frontend/js/designer_matching/designer_matching.js",
+		"/Users/wangboren/staytuned_frontend/css/manufacturer_matching/manufacturer_matching.js",
+		"/Users/wangboren/staytuned_frontend/css/resume_list/basic.css",
+		"/Users/wangboren/staytuned_frontend/js/manufacturer_order/manufacturer_order.js",
+		"/Users/wangboren/staytuned_frontend/css/manufacturer_order/manufacturer_order.css",
+		"/Users/wangboren/staytuned_frontend/manufacturer_order.html",
+		"/Users/wangboren/staytuned_frontend/js/designer_order/designer_order.js",
+		"/Users/wangboren/staytuned_frontend/css/designer_order.css",
+		"/Users/wangboren/staytuned_frontend/designer_order.html",
+		"/Users/wangboren/staytuned_frontend/css/Career/Career.js",
+		"/Users/wangboren/staytuned_frontend/js/Designer_Home.js",
+		"/Users/wangboren/staytuned_frontend/css/common.css",
+		"/Users/wangboren/staytuned_frontend/css/product/style.css",
+		"/Users/wangboren/staytuned_frontend/add_resume.html",
+		"/Users/wangboren/staytuned_frontend/design_backend.html",
+		"/Users/wangboren/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/wangboren/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/wangboren/Library/Application Support/Sublime Text 3/Packages/User/HTML.sublime-settings",
+		"/Users/wangboren/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/wangboren/staytuned_frontend/js/presale_product_detail-01/presale_product_detail-01",
+		"/Users/wangboren/staytuned_frontend/presale_product_detail-01.css",
+		"/Users/wangboren/staytuned_frontend/css/add_resume/add_resume.css",
+		"/Users/wangboren/staytuned_frontend/css/design_backend/design_backend.css"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "db.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

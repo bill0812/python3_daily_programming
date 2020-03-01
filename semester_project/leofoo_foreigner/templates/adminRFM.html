@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/rfm/rfm.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+    <!-- Page Content -->
+    <div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="mt-4 mb-3">R F M 模型</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table>
+                    <thead>
+                        <th>
+                            組別
+                        </th>
+                        <th>
+                            客戶
+                        </th>
+                        <th>
+                            每郵件成本
+                        </th>
+                        <th>
+                            每銷售淨利
+                        </th>
+                        <th>
+                            損益平衡值
+                        </th>
+                        <th>
+                            實際回應率
+                        </th>
+                        <th>
+                            損益平衡指數
+                        </th>
+                        <th>狀況</th>
+                    </thead>
+                    <tbody>
+                        {% for key,value in real_rfm.items %}
+                            <tr>
+                                <td>{{value}}</td>
+                                <td>{{key}}</td>
+                                <td>{{delivery_cost}}</td>
+                                <td>{{per_profit}}</td>
+                                <td>{{lose_balance}}</td>
+                                {% for key_response,value_response in real_response.items %}
+                                    {% if value == key_response %}
+                                        <td>{{value_response}}</td>
+                                    {% endif %}
+                                {% endfor %}
+                                {% for key_value,value_value in lose_balance_value.items %}
+                                    {% if value == key_value %}
+                                        <td>{{value_value}}</td>
+                                        {% if value_value < 0 %}
+                                            <td class="red">不太值得投資</td>
+                                        {% else %}
+                                            <td>狀況尚能接受</td>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {%  endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-info back">返回</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("body").on("click", ".back", function(e){
+                e.preventDefault();
+                location.href = "/admin_page/";
+            });
+        })
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/delivery/delivery.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="delivery-title">預購商品</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="cart-title">客製化</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>筆數</th>
+                        {% for product_data in product %}
+                            <th>{{product_data}}</th>
+                        {% endfor %}
+                            <th>總價格</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for customer_count,customer_data in customer.items %}
+                        <tr class="table-border-customer">
+                            <td>{{customer_count}}</td>
+                        {% for status,customer_amount in customer_data.items %}
+                            {% if status != "總價格" %}
+                                <td>{{customer_amount}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        {% for customer_amount,dollars in customer_data.items %}
+                            {% if customer_amount == "總價格" %}
+                                <td>{{dollars}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="cart-title">一般產品</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>品項</th>
+                            <th>數量</th>
+                            <th>內容</th>
+                            <th>總額</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for normal_product_key,normal_product_value in normal.items %}
+                        <tr class="table-border-normal">
+                            <td>{{normal_product_key}}</td>
+                        {% for title,amount in normal_product_value.items %}
+                            {% if title == "產品資訊" %}
+                                <td>
+                                    <table class="cart-table">
+                                        {% for content,count in amount.items %}
+                                            <tr>
+                                                <td>{{content}}</td>
+                                                <td>{{count}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </td>
+                            {% else %}
+                                <td>{{amount}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="delivery-title">配送資訊</h2>
+                </div>
+            </div>
+    <form method="GET">
+        <div class="row delivery-flex">
+            <div class="col-xs-5">
+                <div class="div-table">
+                    <div>
+                        <div class="row">
+                            <div class="col-xs-12 delivery-title span-title">
+                                <span>姓名：</span>
+                                <span id="default-name">{{name}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 delivery-title span-title">
+                                <span>手機：</span>
+                                <span id="default-phone">{{phone}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 delivery-title span-title last-span">
+                                <span>常用取貨地址：</span>
+                                <span id="default-address">{{address}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-2 delivery-syn">
+                <div>
+                    <div>
+                        <input type="checkbox" id="syn" name="syn">
+                        <label for="syn">同步個人資訊</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-5">
+                <div class="row delivery-flex input">
+                    <div class="col-xs-3">
+                        <h3 class="delivery-title">姓名：</h3>
+                    </div>
+                    <div class="col-xs-9">
+                        <input type="text" class="must" name="name" required>
+                    </div>
+                </div>
+                <div class="row delivery-flex input">
+                    <div class="col-xs-3">
+                        <h3 class="delivery-title">手機：</h3>
+                    </div>
+                    <div class="col-xs-9">
+                        <input type="text" class="must" name="phone" required>
+                    </div>
+                </div>
+                <div class="row delivery-flex input">
+                    <div class="col-xs-3">
+                        <h3 class="delivery-title">常用取貨地址：</h3>
+                    </div>
+                    <div class="col-xs-9">
+                        <input type="text" class="must" name="address" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h5 class="delivery-title">（ 僅提供貨到付款 ）</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <button type="button" class="btn btn-info back">上頁</button>
+            </div>
+            <div class="col-xs-6">
+                <button type="submit" class="btn btn-info">確定</button>
+            </div>
+        </div>
+    <form>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("input[type=checkbox]").on("click",function(){
+                if($("input[type=checkbox]").is(":checked")){
+                    $("input[name=name]").val($("#default-name").text()) ;
+                    $("input[name=phone]").val($("#default-phone").text());
+                    $("input[name=address]").val($("#default-address").text());
+                }else{
+                    $("input[name=name]").val("");
+                    $("input[name=phone]").val("");
+                    $("input[name=address]").val("");
+                }
+            });
+            $("form").submit(function(e){
+                e.preventDefault();
+                var data = {
+                    name : $('input[name=name].must').val(),
+                    phone : $('input[name=phone].must').val(),
+                    address : $('input[name=address].must').val()
+                };
+                $.ajax({
+                    url: "/make_order/",
+                    type: 'GET',
+                    data : data,
+                    success: function(text) {
+                        alert("成功送出訂單");
+                        location.href = "/order/"
+                    },
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+            $("body").on("click", "button.back", function(e){
+                e.preventDefault();
+                location.href = "/cart/";
+            });
+        })
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

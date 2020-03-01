@@ -1,0 +1,45 @@
+.login-panel{
+    background-color: white;
+    padding: 25px;
+    border-radius: 3%;
+}
+.login-header{
+    text-align: center;
+}
+.diplay-flex{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.diplay-flex input{
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+.login-btn{
+    text-align: center;
+}
+.login-btn button{
+    width: 45%;
+    float: left;
+    font-size: 20px;
+}
+.login-btn-first{
+    margin-right: 10%;
+}
+.login-btn-first a{
+    color: white;
+}
+.login-btn-first a:hover{
+    text-decoration: none;color: white;
+}
+.login-show-status h4,.login-show-status h5{
+    color: red;
+}
+.hidden{
+    display: none;
+}
+#show-account-check{
+    text-align: center;
+    font-size: 40px;
+}

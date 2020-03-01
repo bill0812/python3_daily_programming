@@ -1,0 +1,92 @@
+.delivery-title{
+    text-align: center;
+}
+.delivery-flex{
+    display: flex;
+}
+.div-table{
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+.div-table > div {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+.span-title{
+    font-size: 24px;
+    color: #003377;
+    margin-bottom: 15px;
+}
+.last-span{
+    margin-bottom: 0;
+}
+.delivery-syn > div{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.delivery-syn > div > div{
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+.delivery-syn input{
+    display: none;
+}
+.delivery-syn input +  label{
+    border: 2px solid #003377;
+    font-size: 25px;
+    color: #003377;
+    cursor: pointer;
+}
+.delivery-syn input:checked + label{
+    border: 2px solid #003377;
+    font-size: 25px;
+    background-color: #003377;
+    color: white
+}
+.delivery-syn input + label:hover{
+        background-color: #5bc0de;
+}
+.input{
+    margin-bottom: 20px;
+}
+.input:last-child{
+    margin-bottom: 0;
+}
+input[type="text"]{
+    width: 100%;
+    height: 100%;
+    font-size: 21px;
+}
+button{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+.cart-title{
+    color: #003377;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cart-table{
+    color: #003377;
+    border-radius: 10px;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+.cart-table thead tr th,.cart-table tbody tr td{
+    height: 50px;
+    font-size: 21px;
+    text-align: center;
+}
+.table-border-customer,.table-border-normal{
+    border-bottom: 2px solid #003377;
+}
+.table-border-customer:nth-child(even),.table-border-normal:nth-child(even),.table-border-customer:last-child,.table-border-normal:last-child{
+    border-bottom: none;
+}

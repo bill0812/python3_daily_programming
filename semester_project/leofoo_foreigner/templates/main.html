@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/main/main.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+    <!-- Page Content -->
+    <div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="mt-4 mb-3">給你最新鮮的好蔬菜&#160;&#160;</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    {% for product_name, product_info in product_data.items %}
+                        <div class="col-xs-6 object">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4 class="card-title">{{product_name}}</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-offset-1 col-xs-10 product-img">
+                                    <div class="img-area">
+                                        <img src="../static/img/product/box{{forloop.counter}}.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="count">目前庫存</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h4 class="count">{{product_info.目前存貨}}箱</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-offset-3 col-xs-6">
+                                    {% if product_info.目前存貨 == 0 %}
+                                        <input class="input-count" type="number" min="0" value="0" disabled>
+                                    {% else %}
+                                        <input class="input-count" type="number" min="0" value="0" name="{{product_name}}">
+                                    {% endif %}
+                                </div>
+                                <div class="col-xs-12 btn-area">
+                                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo{{forloop.counter}}">查看內容物</button>
+                                    {% if user == 1 %}
+                                        {% if product_info.目前存貨 == 0 %}
+                                            <button type="submit" class="btn btn-info" disabled>加入購物車</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-info" id="{{product_name}}">加入購物車</button>
+                                        {% endif %}
+                                    {% else %}
+                                        <button class="btn btn-info no-user-cart"><a href="../login">加入購物車</a></button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div id="demo{{forloop.counter}}" class="collapse">
+                                <h4>{{product_info.價格}}</h4>
+                                {% for kind,amount in product_info.種類.items %}
+                                    <small>{{kind}}*{{amount}}<br></small>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% if forloop.counter|divisibleby:2 %}
+                        {% if forloop.last %}
+                        {% else %}
+                </div>
+            </div>
+                <div class="col-xs-12">
+                    <div class="row">
+                        {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("button[type=submit]").click(function(){
+                console.log($(this).parent().prev().children().val());
+                if($(this).parent().prev().children().val() == 0 ){
+                    alert("沒資料！！")
+                }else{
+                    var name = $(this).attr("id");
+                    var data = {
+                        "name" : name,
+                        "count" : $(this).parent().prev().children().val()
+                    };
+                    $.ajax({
+                        url: "/upload_normal/",
+                        type: 'GET',
+                        data : data,
+                        success: function(text) {
+                            alert("成功加入購物車");
+                        },
+                        error : function(xhr,errmsg,err) {
+                            console.log(xhr.status + ": " + xhr.responseText);
+                        }
+                    });
+                }
+                $(this).parent().prev().children().val(0);
+            });
+        })
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

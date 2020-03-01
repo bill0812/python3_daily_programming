@@ -1,0 +1,6 @@
+[submodule "炎龍的摩課師課程/Deep-Learning-MOOC"]
+	path = 炎龍的摩課師課程/Deep-Learning-MOOC
+	url = git@github.com:yenlung/Deep-Learning-MOOC.git
+[submodule "炎龍的摩課師課程/Python-3-Data-Analysis-Basics"]
+	path = 炎龍的摩課師課程/Python-3-Data-Analysis-Basics
+	url = git@github.com:yenlung/Python-3-Data-Analysis-Basics.git

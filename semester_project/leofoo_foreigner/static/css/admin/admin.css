@@ -1,0 +1,12 @@
+.container{
+    min-height: 100vh;
+}
+.center{
+    text-align: center;
+}
+button{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 23px !important;
+}

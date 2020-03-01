@@ -1,0 +1,100 @@
+#tabs ul{
+    list-style: none;
+
+    margin: 0;
+}
+#tabs ul li{
+    list-style: none;
+    display: inline-flex;
+    margin-left: 20px;
+    font-size: 30px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+#tabs{
+    text-align: center;
+}
+a:hover,a:focus{
+    text-decoration: none;
+    outline: none;
+}
+.odd-bg h2{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.odd-bg:nth-child(odd){
+    background-color: white;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+.odd-bg:nth-child(even){
+    background-color: #ffffff85;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+.product-detail{
+    font-size: 30px;
+    background-color: blanchedalmond;
+    border-radius: 10px;
+}
+.product-detail a{
+    cursor: pointer;
+}
+.show-product h2{
+    font-size: 15px;
+}
+.show-product{
+    position: absolute;
+    width: 50%;
+    background-color: white;
+    left: 25%;
+    z-index: 100;
+    box-shadow: 0px 0px 20px;
+    border-radius: 10px;
+    display: none;
+}
+.product-title,.product-change:nth-child(even){
+    border-bottom: 2px solid wheat;
+}
+.product-change:last-child{
+    border: none;
+}
+button{
+    width: 100%;
+    margin-top: 30px;
+    font-size: 25px;
+}
+.display{
+    display: flex;
+}
+.container span{
+    cursor: pointer;
+    display: block;
+    font-size: 30px;
+    color: blue;
+}
+.table-cell{
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+.table-cell > div{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+.person-data{
+    height: 100%;
+    width: 100%;
+    font-size: 25px;
+    display: none;
+}
+.container .recover{
+    display: none;
+}
+input{
+    width: 100%;
+}

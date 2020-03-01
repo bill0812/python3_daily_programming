@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "include_header.html" %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/modern-business.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/admin/admin.css" %}" >
+</head>
+<body>
+    {% include "header.html" %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-offset-3 col-xs-6 center">
+            	<div class="row">
+                    <div class="col-xs-12">
+                        <h2>管理者頁面</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-info order">訂單紀錄</button>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-info structure">物料清單</button>
+                            </div>
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-info rfm">R F M 分析</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button type="button" class="btn btn-info process">主排程</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-info back">返回</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("body").on("click", ".back", function(e){
+                e.preventDefault();
+                location.href = "/main/";
+            });
+            $("body").on("click", ".order", function(e){
+                e.preventDefault();
+                location.href = "/admin_page_order/";
+            });
+            $("body").on("click", ".structure", function(e){
+                e.preventDefault();
+                location.href = "/admin_page_structure/";
+            });
+            $("body").on("click", ".process", function(e){
+                e.preventDefault();
+                location.href = "/adminprocess/";
+            });
+            $("body").on("click", ".rfm", function(e){
+                e.preventDefault();
+                location.href = "/show_rfm/";
+            });
+        })
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

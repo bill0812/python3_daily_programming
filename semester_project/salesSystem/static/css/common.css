@@ -1,0 +1,38 @@
+nav{
+    background-color: #E8E8E8;
+}
+.navbar-toggle .icon-bar{
+    background-color: black;
+}
+button.navbar-toggle{
+    border: 1px solid black !important;
+}
+.navbar-collapse ul.navbar-nav{
+    list-style: none;
+    height: 100%;
+    float: right;
+    font-size: 25px;
+}
+.display-flex{
+    display: flex !important;
+}
+.span-btn{
+    padding: 15px;
+    line-height: 20px;
+}
+/* ============================= */
+div.container{
+    margin-top: 100px;
+    min-height: 100vh;
+}
+/* ============================= */
+footer{
+    margin-top: 100px;
+    background-color: #E8E8E8;
+}
+footer p{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+    margin: 0
+}
